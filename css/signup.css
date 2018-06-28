@@ -1,0 +1,27 @@
+.bg-image {
+    background-image: url('../images/background.jpg');
+    min-height: 100vh;
+    min-width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.signup-form {
+    background-color: rgba(151, 174, 189, 0.7);
+    min-height: 43rem;
+    min-width: 20rem;
+    margin: 3rem auto;
+    /* text-align: center; */
+}
+
+.header {
+    text-align: center;
+    color: black;
+    text-shadow: 2px 2px 5px white;
+}
+
+.submit-button {
+    text-align: center;
+}

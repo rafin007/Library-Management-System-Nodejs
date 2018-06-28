@@ -1,0 +1,35 @@
+.bg-image {
+    background-image: url('../images/background.jpg');
+    min-height: 100vh;
+    min-width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.login-box {
+    background-color: rgba(151, 174, 189, 0.7);
+    height: 25rem;
+    width: 30rem;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+    color: black;
+    text-shadow: 2px 2px 5px white;
+}
+
+.login-form {
+    margin-top: 4.5rem;
+    text-align: left;
+    border-left: 2px solid black;
+
+}
+
+.sign-up {
+    margin-top: 8rem;
+    /* border-right: 2px solid black; */
+}
