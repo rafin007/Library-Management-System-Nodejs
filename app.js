@@ -25,6 +25,10 @@ app.get('/signup', (req, res)=>{
     res.render('signup.ejs');
 });
 
+app.get('/admin/home', (req, res) => {
+    res.render('admin/home.ejs');
+});
+
 //server start
 app.listen(port, ()=>{
     console.log(`Server running on port ${port}`);

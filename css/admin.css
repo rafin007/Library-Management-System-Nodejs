@@ -1,0 +1,34 @@
+/* home.css */
+.navbar-nav {
+    margin-right: 6rem;
+}
+
+.navbar {
+    min-height: 8vh;
+}
+
+.container-fluid {
+    min-height: 91.4vh;
+    width: 100vw;
+    background-color: white;
+    /* background-color: rgba(193, 193, 207, 0.7); */
+}
+
+.sidebar {
+    min-height: 91.4vh;
+    padding-top: 5rem;
+    padding-left: 3rem;
+    font-size: 2rem;
+}
+
+.sidebar a:visited {
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: none;
+}
+
+.report {
+    margin-top: 1rem;
+}
