@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Library Management System</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <a class="navbar-brand" href="#"><i class="fas fa-book-open"></i> Library Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -14,7 +14,7 @@
   Customer
 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">View Customers</a>
+                    <a class="dropdown-item" href="/admin/customers">View Customers</a>
                     <a class="dropdown-item" href="#">Add Customer</a>
                     <a class="dropdown-item" href="#">Edit Customer</a>
                 </div>
@@ -24,9 +24,9 @@
   Books
 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">View Books</a>
-                    <a class="dropdown-item" href="#">Add new Book</a>
-                    <a class="dropdown-item" href="#">Add existing Book</a>
+                    <a class="dropdown-item" href="/admin/books">View Books</a>
+                    <a class="dropdown-item" href="/admin/books/add">Add new Book</a>
+                    <a class="dropdown-item" href="/admin/books/edit/id">Edit existing Book</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -34,9 +34,9 @@
   Profile
 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">View Profile</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
-                    <a class="dropdown-item" href="#">Change Password</a>
+                    <a class="dropdown-item" href="/admin/profile">View Profile</a>
+                    <a class="dropdown-item" href="/admin/profile/edit">Edit Profile</a>
+                    <a class="dropdown-item" href="/admin/changepass">Change Password</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Logout</a>
                 </div>
