@@ -1,4 +1,5 @@
 /* customer/home.css */
+
 .navbar-nav {
     margin-right: 6rem;
 }
@@ -123,4 +124,20 @@
 .gender {
     width: 20rem;
     margin: auto;
+}
+
+
+/* customer/books/request.css */
+
+.request-books {
+    /* background-color: #343A40; */
+    background-color: #CCE5FF;
+    height: 30rem;
+    margin-left: 2rem;
+    float: left;
+    /* opacity: 0.5; */
+    color: black;
+    padding-top: 2rem;
+    text-align: center;
+    margin-top: 3rem;
 }

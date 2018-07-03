@@ -1,6 +1,6 @@
 <%-include('../partials/header.html')%>
     <link rel="stylesheet" href="/../../css/customer.css">
-    <title>Customer Change Password</title>
+    <title>Request New Book</title>
     </head>
 
     <body>
@@ -11,35 +11,43 @@
                 <%-include('partials/sidebar.html')%>
                 <div class="col-md-10 content">
                     <div class="row">
-                        <div class="col-md-11 change-password">
-                            <p class="display-4">Change Password</p>
+                        <div class="col-md-11 request-books">
+                            <p class="display-4">Request a New Book</p>
                             <form class="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Old Password</label>
+                                    <label class="col-sm-2 col-form-label">Subject</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">New Password</label>
+                                    <label class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Confirm Password</label>
+                                    <label class="col-sm-2 col-form-label">Author</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Edition</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <hr>
                                 <div>
-                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                    <button type="submit" class="btn btn-primary">Request</button>
                                     <br>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

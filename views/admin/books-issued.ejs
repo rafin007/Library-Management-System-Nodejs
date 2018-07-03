@@ -1,6 +1,6 @@
 <%-include('../partials/header.html')%>
     <link rel="stylesheet" href="/../../css/admin.css">
-    <title>Customers</title>
+    <title>Issued Books</title>
     </head>
 
     <body>
@@ -12,7 +12,7 @@
                         <div class="col-md-10 content">
                             <div class="input-group mb-5 search-bar">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Search Customers</label>
+                                    <label class="input-group-text" for="inputGroupSelect01">Search Books</label>
                                 </div>
                                 <select class="custom-select dropbar" id="inputGroupSelect01">
                                     <option selected>by...</option>
@@ -31,11 +31,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Gender</th>
-                                        <th scope="col">Books borrowed</th>
-                                        <th scope="col">Books owned</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">Edition</th>
+                                        <th scope="col">Member</th>
                                         <!-- <th scope="col">ISBN</th>
                                         <th scope="col">Pages</th>
                                         <th scope="col">Quantity</th> -->
@@ -44,11 +44,11 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td><a href="/admin/customers/profile/id">Mark</a></td>
+                                        <td>Mark</td>
                                         <td>Otto</td>
                                         <td>@mdo</td>
                                         <td>@mdo</td>
-                                        <td>@mdo</td>
+                                        <td><a href="/admin/customers/profile/id">Jane Doe</a></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
