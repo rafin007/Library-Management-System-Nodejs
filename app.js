@@ -6,7 +6,7 @@ var port = 3000;
 
 //controllers
 // var home = require('./controllers/home');
-// var login = require('./controllers/login');
+var login = require('./controllers/login');
 
 //configure
 app.set('view engine', 'ejs');
@@ -16,16 +16,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/images', express.static(__dirname + '/images'));
 
-//routes
-app.get('/login', (req, res)=>{
-    res.render('login.ejs');
-});
 
-app.get('/signup', (req, res)=>{
-    res.render('signup.ejs');
-});
+//routes
+app.use('/login', login);
+
 
 //admin routes
+
+
 
 app.get('/admin/home', (req, res) => {
     res.render('admin/home.ejs');

@@ -1,24 +1,20 @@
-var connection = require.main.require('./database/config');
+var db = require.main.require('./models/config');
 
-var validateUser = (username, password, callback) =>{
-    var sql = "SELECT * FROM users WHERE `username` = username AND `password` = password";
-    connection.query(sql, (error, result)=>{
-        if(error){
-            console.log(error);
-            callback(false);
-        }
-        else{
-            if(result.length == 0){
-                callback(false);
-            }
-            else{
-                console.log(result);
-                callback(true);
-            }
-        }
-    });
+var validateUser = (email, password, callback) =>{
+    var sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    db.executeQuery(sql, [email, password], function(result){
+    // console.log(result);
+    callback(result[0]);
+  });
+};
+
+var createUser = (name, phone, email, is_admin, password, address, gender, callback) => {
+  var sql = "INSERT INTO users VALUES(null, ?, ?, ?, 0, ?, ?, ?)";
+  db.executeQuery(sql, [name, phone, email, is_admin, password, address, gender], function(result){
+  callback(result);
 };
 
 module.exports = {
-    validateUser
+    validateUser,
+    createUser
 };
