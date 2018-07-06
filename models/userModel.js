@@ -14,7 +14,33 @@ var createUser = (name, phone, email, password, address, gender, callback) => {
   });
 };
 
+var getUser = (id, callback)=>{
+	var sql = "SELECT * FROM users WHERE user_id=?";
+	db.executeQuery(sql, [id], function(result){
+		callback(result[0]);
+	});
+};
+
+var updateUser = (user, callback)=> {
+    var sql = "UPDATE users SET name = ?, email = ?, phone = ?, address = ?, gender = ? WHERE user_id = ?";
+    db.executeQuery(sql, [user.name, user.email, user.phone, user.address, user.gender, user.user_id], function(result){
+		callback(result);
+	});
+};
+
+var updatePassword = (password, id, callback)=> {
+    var sql = "UPDATE users SET password = ? WHERE user_id = ?";
+    db.executeQuery(sql, [password, id], function(result){
+		callback(result);
+	});
+};
+
+
+
 module.exports = {
     validateUser,
-    createUser
+    createUser,
+    getUser,
+    updateUser,
+    updatePassword
 };

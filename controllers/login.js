@@ -26,11 +26,14 @@ router.post('/', (req, res)=>{
                 }
                 else{
                   console.log(result);
-                  console.log(result.is_admin);
-                  if(result.is_admin == 1)
-                    res.redirect('/admin/home');
-                  else
-                    res.redirect('/customer/home');
+                  if(result.is_admin == 1){
+                      req.session.admin = result.user_id;
+                      res.redirect('/admin/home');
+                  }
+                  else{
+                      req.session.customer = result.user_id;
+                      res.redirect('/customer/home');
+                  }
                 }
             });
         }

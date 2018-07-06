@@ -1,20 +1,45 @@
 //declaration
 var express = require('express');
+var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 var port = 3000;
 
-//controllers
+//common controllers
 var signup = require('./controllers/signup');
 var login = require('./controllers/login');
+
+//admin controllers
+var admin = require('./controllers/admin');
+
+
+//customer controllers
 
 //configure
 app.set('view engine', 'ejs');
 
 //middlewares
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressSession({secret: 'my top secret pass', resave: false, saveUninitialized: true}));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/images', express.static(__dirname + '/images'));
+
+app.use('*', function(req, res, next){
+
+	if(req.originalUrl == '/login' || req.originalUrl == '/signup')
+	{
+		next();
+	}
+	else
+	{
+		if(!req.session.admin && !req.session.customer)
+		{
+			res.redirect('/login');
+			return;
+		}
+		next();
+	}
+});
 
 
 //routes
@@ -22,9 +47,13 @@ app.use('/login', login);
 app.use('/signup', signup);
 
 //admin routes
+app.use('/admin', admin);
 
 
+//customer routes
 
+
+//admin routes
 app.get('/admin/home', (req, res) => {
     res.render('admin/home.ejs');
 });
@@ -35,10 +64,6 @@ app.get('/admin/books', (req, res)=>{
 
 app.get('/admin/customers', (req, res)=>{
     res.render('admin/customers.ejs');
-});
-
-app.get('/admin/profile', (req, res)=>{
-    res.render('admin/profile.ejs');
 });
 
 app.get('/admin/profile/edit', (req, res)=>{
@@ -55,10 +80,6 @@ app.get('/admin/books/edit/id', (req, res)=> {
 
 app.get('/admin/books/edit/id', (req, res)=> {
     res.render('admin/books-edit.ejs');
-});
-
-app.get('/admin/changepass', (req, res)=> {
-    res.render('admin/change-password.ejs');
 });
 
 app.get('/admin/customers/add', (req, res)=> {
