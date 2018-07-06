@@ -26,6 +26,12 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </form>
+                            <div class="">
+                                <% for(var i=0; i< errs.length; i++){ %>
+                                    <%= errs[i].message; %>
+                                    <br>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 </div>

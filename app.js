@@ -5,7 +5,7 @@ var app = express();
 var port = 3000;
 
 //controllers
-// var home = require('./controllers/home');
+var signup = require('./controllers/signup');
 var login = require('./controllers/login');
 
 //configure
@@ -19,7 +19,7 @@ app.use('/images', express.static(__dirname + '/images'));
 
 //routes
 app.use('/login', login);
-
+app.use('/signup', signup);
 
 //admin routes
 

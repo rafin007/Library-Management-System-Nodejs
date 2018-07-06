@@ -58,6 +58,13 @@
                     <div class="submit-button">
                         <a href="/login"><button class="btn btn-info">Sign in</button></a>
                     </div>
+                    <div class="">
+                        <% for(var i=0; i< errs.length; i++){ %>
+                            <%= errs[i].message %>
+                            <br>
+                        <% } %>
+
+                    </div>
                 </div>
             </div>
         </div>

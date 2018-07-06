@@ -1,43 +1,45 @@
 var express = require('express');
 var router = express.Router();
 var userModel = require.main.require('./models/userModel');
-var rules = require.main.require('./validation_rules/rules');
-var asyncValidator = require('async-validator');
+var validationRules = require.main.require('./validation_rules/rules');
+var asyncValidator = require('async-validator-2');
 
 router.get('/', (req, res)=>{
-    res.render('signup.ejs');
+    res.render('signup.ejs', {errs: []});
 });
 
 router.post('/', (req, res)=>{
 
     var data = {
-      name: req.body.name;
-      email: req.body.email;
-      phone: req.body.phone;
-      address: req.body.address;
-      password: req.body.password;
-      gender: req.body.gender;
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      address: req.body.address,
+      password: req.body.password,
+      gender: req.body.gender
     };
 
-    var name = req.body.name;
-    var email = req.body.email;
-    var password = req.body.password;
-    var phone = req.body.phone;
-    var address = req.body.address;
+    var rules = validationRules.users.create;
+    var validator = new asyncValidator(rules);
 
-    userModel.createUser(email, password, function(result){
-        if(result.length == 0){
-          res.send('Invalid');
+    validator.validate(data, (errors, fields)=>{
+        if(!errors){
+            userModel.createUser(req.body.name, req.body.phone, req.body.email, req.body.password, req.body.address, req.body.gender, function(result){
+                if(result){
+                    console.log(result);
+                    res.redirect('/login');
+                }
+                else {
+                    res.send('Invalid');
+                }
+            });
         }
-        else{
-          console.log(result);
-          console.log(result.is_admin);
-          if(result.is_admin == 1)
-            res.redirect('/admin/home');
-          else
-            res.redirect('/customer/home');
+        else {
+            console.log(fields);
+            res.render('signup', {errs: errors});
         }
     });
+
 });
 
 module.exports = router;
