@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userModel = require.main.require('./models/userModel');
+var bookModel = require.main.require('./models/bookModel');
 var validationRules = require.main.require('./validation_rules/rules');
 var asyncValidator = require('async-validator-2');
 
@@ -106,6 +107,58 @@ router.post('/changepass', (req, res)=> {
         res.render('admin/change-password', {errs: [{message: "Your old passsword does not match!"}], res: [], success: []});
     }
 
+});
+
+router.get('/books', (req, res)=> {
+    bookModel.getAll((result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/books', {res: result, errs: []});
+        }
+    });
+});
+
+router.post('/books', (req, res)=> {
+    var searchBy = req.body.searchBy;
+    var word = req.body.word;
+    bookModel.searchBy(searchBy, word, (result)=> {
+        if(!result){
+            res.render('admin/books', {res: [], errs: [{message: "No results found!"}]});
+        }
+        else {
+            console.log(result);
+            res.render('admin/books', {res: result, errs: []})
+        }
+    });
+});
+
+router.get('/customers', (req, res)=> {
+    userModel.getAll((result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/customers', {res: result, errs: []});
+        }
+    });
+});
+
+router.post('/customers', (req, res)=> {
+    var searchBy = req.body.searchBy;
+    var word = req.body.word;
+    userModel.searchBy(searchBy, word, (result)=> {
+        if(!result){
+            res.render('admin/customers', {res: [], errs: [{message: "No results found!"}]});
+        }
+        else {
+            console.log(result);
+            res.render('admin/customers', {res: result, errs: []})
+        }
+    });
 });
 
 
