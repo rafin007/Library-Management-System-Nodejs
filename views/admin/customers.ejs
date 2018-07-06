@@ -45,6 +45,10 @@
                                 <tbody>
                                     <% for(var i=0; i< res.length; i++){ %>
                                     <tr>
+                                        <% if(res[i].is_admin == 1){
+                                                res.splice(i, 1);
+                                           }
+                                        %>
                                         <th scope="row"><%=res[i].user_id%></th>
                                         <td><a href="/admin/customers/profile/id"><%=res[i].name%></a></td>
                                         <td><%=res[i].phone%></td>
