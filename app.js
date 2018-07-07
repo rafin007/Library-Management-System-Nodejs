@@ -54,30 +54,6 @@ app.use('/admin', admin);
 
 
 //admin routes
-app.get('/admin/home', (req, res) => {
-    res.render('admin/home.ejs');
-});
-
-app.get('/admin/books/add', (req, res)=> {
-    res.render('admin/books-add.ejs');
-});
-
-app.get('/admin/books/edit/id', (req, res)=> {
-    res.render('admin/books-edit.ejs');
-});
-
-app.get('/admin/books/edit/id', (req, res)=> {
-    res.render('admin/books-edit.ejs');
-});
-
-app.get('/admin/customers/add', (req, res)=> {
-    res.render('admin/customers-add.ejs');
-});
-
-app.get('/admin/customers/edit/id', (req, res)=> {
-    res.render('admin/customers-edit.ejs');
-});
-
 app.get('/admin/books/issued', (req, res)=> {
     res.render('admin/books-issued.ejs');
 });

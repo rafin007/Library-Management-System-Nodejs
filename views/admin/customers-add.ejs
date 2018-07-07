@@ -17,42 +17,35 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="name">
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="email">
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Phone</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="phone">
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Password</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Confirm Password</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="password">
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Address</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="address">
                                             </div>
                                         </div>
                                         <hr>
@@ -60,7 +53,7 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="inputGroupSelect01">Gender</label>
                                             </div>
-                                            <select class="custom-select" id="inputGroupSelect01">
+                                            <select class="custom-select" id="inputGroupSelect01" name="gender">
                                                 <option selected value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
@@ -71,6 +64,16 @@
                                             <br>
                                         </div>
                                     </form>
+                                    <div class="">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <%= errs[i].message %>
+                                            <br>
+                                        <% } %>
+                                        <% for(var i=0; i< success.length; i++){ %>
+                                            <%= success[i].message %>
+                                            <br>
+                                        <% } %>
+                                    </div>
 
                                 </div>
                             </div>

@@ -7,9 +7,9 @@ var validateUser = (email, password, callback) => {
     });
 };
 
-var createUser = (name, phone, email, password, address, gender, callback) => {
+var createUser = (user, callback) => {
     var sql = "INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ?)";
-    db.executeQuery(sql, [name, phone, email, 0, password, address, gender], function(result) {
+    db.executeQuery(sql, [user.name, user.phone, user.email, 0, user.password, user.address, user.gender], function(result) {
         callback(result);
     });
 };
@@ -49,6 +49,13 @@ var searchBy = (searchBy, word, callback) => {
     });
 };
 
+var updateCustomer = (id, customer, callback) => {
+    var sql = "UPDATE users SET name = ?, email = ?, phone = ?, address = ?, gender = ? WHERE user_id = ?";
+    db.executeQuery(sql, [customer.name, customer.email, customer.phone, customer.address, customer.gender, id], function(result) {
+        callback(result);
+    });
+};
+
 
 module.exports = {
     validateUser,
@@ -57,5 +64,6 @@ module.exports = {
     updateUser,
     updatePassword,
     getAll,
-    searchBy
+    searchBy,
+    updateCustomer
 };

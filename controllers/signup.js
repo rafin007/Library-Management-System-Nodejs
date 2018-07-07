@@ -24,7 +24,7 @@ router.post('/', (req, res)=>{
 
     validator.validate(data, (errors, fields)=>{
         if(!errors){
-            userModel.createUser(req.body.name, req.body.phone, req.body.email, req.body.password, req.body.address, req.body.gender, function(result){
+            userModel.createUser(data, function(result){
                 if(result){
                     console.log(result);
                     res.redirect('/login');
