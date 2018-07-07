@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2018 at 07:51 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Jul 07, 2018 at 03:54 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `books` (
   `book_id` int(100) NOT NULL,
-  `user_id` int(100) NOT NULL,
+  `user_id` int(100) DEFAULT NULL,
   `genre` varchar(300) NOT NULL,
   `title` varchar(300) NOT NULL,
   `author` varchar(300) NOT NULL,
@@ -45,8 +43,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `user_id`, `genre`, `title`, `author`, `publisher`, `edition`, `isbn`, `pages`) VALUES
-(1, 1, 'Horror', 'Zombie Day', 'Kazi Nazrul Islam', 'Nazrul Publications', 1, 'jfklsgsdlg5qw7q87w', 800),
-(2, 2, 'Comedy', 'Good ol\' AIUB Days', 'Arefin', 'AIUB', 2, 'dfd4fha656fk545', 900);
+(1, 1, 'Horror', 'Zombie Day', 'Kazi Nazrul Islam', 'Nazrul Publications', 3, 'jfklsgsdlg5qw7q87w', 800),
+(2, 2, 'Comedy', 'Good ol'' AIUB Days', 'Arefin', 'AIUB', 2, 'dfd4fha656fk545', 900),
+(3, NULL, 'Adventure', 'A Song of Ice & Fire', 'George R. R. Martin', 'Game of Thrones', 8, 'has23dadh123427', 1200);
 
 -- --------------------------------------------------------
 
@@ -70,8 +69,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `phone`, `email`, `is_admin`, `password`, `address`, `gender`) VALUES
-(1, 'Abrar', '01711568524', 'a.zshahriar@gmail.com', 1, '1234', 'Mirpur', 'Male'),
-(2, 'Arefin', '01764431859', 'arefin@gmail.com', 0, '12345', 'Mirpur', 'Male');
+(1, 'Abrar', '01711568524', 'a.zshahriar@gmail.com', 1, 'elephant', 'Banani', 'Male'),
+(2, 'Arefin', '01764431859', 'arefin@gmail.com', 0, '12345', 'Mirpur', 'Male'),
+(3, 'Alan', '01932456924', 'alan@ymail.com', 0, 'abcdef', 'Gazipur', 'Male'),
+(4, 'Rafin', '01924184941', 'rafin.ryan.07@outlook.com', 0, 'horse', 'Mirpur 13, Dhaka', 'Male');
 
 --
 -- Indexes for dumped tables
@@ -99,12 +100,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `book_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -114,7 +115,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
