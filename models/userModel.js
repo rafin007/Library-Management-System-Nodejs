@@ -56,6 +56,13 @@ var updateCustomer = (id, customer, callback) => {
     });
 };
 
+var deleteUser = (id, callback) => {
+    var sql = "DELETE FROM users WHERE user_id = ?";
+    db.executeQuery(sql, [id], function(result) {
+        callback(result);
+    });
+};
+
 
 module.exports = {
     validateUser,
@@ -65,5 +72,6 @@ module.exports = {
     updatePassword,
     getAll,
     searchBy,
-    updateCustomer
+    updateCustomer,
+    deleteUser
 };

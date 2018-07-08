@@ -35,10 +35,18 @@ var updateBook = (id, book, callback) => {
     });
 };
 
+var deleteBook = (id, callback) => {
+    var sql = "DELETE FROM books WHERE book_id = ?";
+    db.executeQuery(sql, [id], function(result) {
+        callback(result);
+    });
+};
+
 module.exports = {
     getAll,
     searchBy,
     createBook,
     getBook,
-    updateBook
+    updateBook,
+    deleteBook
 };

@@ -51,7 +51,7 @@
                                            }
                                         %>
                                         <th scope="row"><%=res[i].user_id%></th>
-                                        <td><a href="/admin/customers/profile/id"><%=res[i].name%></a></td>
+                                        <td><a href="/admin/customers/profile/<%=res[i].user_id%>"><%=res[i].name%></a></td>
                                         <td><%=res[i].phone%></td>
                                         <td><%=res[i].email%></td>
                                         <td><%=res[i].address%></td>
@@ -59,7 +59,7 @@
                                         <td>10</td>
                                         <td>
                                             <a href="/admin/customers/edit/<%=res[i].user_id%>">Edit Customer</a> |
-                                            <a href="#">Delete Customer</a>
+                                            <a href="/admin/customers/delete/<%=res[i].user_id%>">Delete Customer</a>
                                         </td>
                                     </tr>
                                     <% } %>

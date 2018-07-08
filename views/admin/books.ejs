@@ -77,16 +77,10 @@
                                             <td>
                                                 <a href="#">Issue Book</a> |
                                                 <a href="/admin/books/edit/<%=res[i].book_id%>">Edit Book</a> |
-                                                <a href="#">Delete Book</a>
+                                                <a href="/admin/books/delete/<%=res[i].book_id%>">Delete Book</a>
                                             </td>
                                         </tr>
                                         <% } %>
-                                        <div class="">
-                                            <% for(var i=0; i< errs.length; i++){ %>
-                                                <%= errs[i].message %>
-                                                <br>
-                                            <% } %>
-                                        </div>
 
                                 </tbody>
                             </table>

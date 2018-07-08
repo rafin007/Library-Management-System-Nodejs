@@ -331,5 +331,71 @@ router.post('/customers/edit/:id', (req, res)=> {
 
 });
 
+router.get('/customers/profile/:id', (req, res)=> {
+    var id = req.params.id;
+    var customer = userModel.getUser(id, (result)=> {
+        if(result.length == 0){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/customers-profile', {res: result});
+        }
+    });
+});
+
+router.get('/customers/delete/:id', (req, res)=> {
+    var id = req.params.id;
+    var customer = userModel.getUser(id, (result)=> {
+        if(result.length == 0){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/customers-delete', {res: result});
+        }
+    });
+});
+
+router.post('/customers/delete/:id', (req, res)=> {
+    var id = req.body.user_id;
+    var customer = userModel.deleteUser(id, (result)=> {
+        if(result.length == 0){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.redirect('/admin/customers');
+        }
+    });
+});
+
+router.get('/books/delete/:id', (req, res)=> {
+    var id = req.params.id;
+    var book = bookModel.getBook(id, (result)=> {
+        if(result.length == 0){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/books-delete', {res: result});
+        }
+    });
+});
+
+router.post('/books/delete/:id', (req, res)=> {
+    var id = req.body.book_id;
+    var book = bookModel.deleteBook(id, (result)=> {
+        if(result.length == 0){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.redirect('/admin/books');
+        }
+    });
+});
+
+
 
 module.exports = router;

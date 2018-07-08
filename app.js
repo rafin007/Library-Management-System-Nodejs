@@ -58,10 +58,6 @@ app.get('/admin/books/issued', (req, res)=> {
     res.render('admin/books-issued.ejs');
 });
 
-app.get('/admin/customers/profile/id', (req, res)=> {
-    res.render('admin/customer-profile.ejs');
-});
-
 
 
 //customer routes
