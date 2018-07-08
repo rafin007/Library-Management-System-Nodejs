@@ -1,6 +1,6 @@
 <%-include('../partials/header.html')%>
     <link rel="stylesheet" href="/../../css/admin.css">
-    <title>Customers</title>
+    <title>Issue Book to Customers</title>
     </head>
 
     <body>
@@ -47,7 +47,7 @@
                                     <% for(var i=0; i< res.length; i++){ %>
                                     <tr>
                                         <% if(res[i].is_admin == 1){
-                                                continue;
+                                                res.splice(i, 1);
                                            }
                                         %>
                                         <th scope="row"><%=res[i].user_id%></th>
@@ -58,8 +58,13 @@
                                         <td><%=res[i].gender%></td>
                                         <td>10</td>
                                         <td>
-                                            <a href="/admin/customers/edit/<%=res[i].user_id%>">Edit Customer</a> |
-                                            <a href="/admin/customers/delete/<%=res[i].user_id%>">Delete Customer</a>
+                                            <form method="post">
+                                                <input type="text" name="user_id" value="<%=res[i].user_id%>" hidden>
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary">Issue Customer</button>
+                                                    <br>
+                                                </div>
+                                            </form>
                                         </td>
                                     </tr>
                                     <% } %>

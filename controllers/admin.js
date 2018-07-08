@@ -396,6 +396,45 @@ router.post('/books/delete/:id', (req, res)=> {
     });
 });
 
+router.get('/books/:id/issue', (req, res)=> {
+    userModel.getAll((result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/books-issue', {res: result, errs: [], success: []});
+        }
+    });
+});
+
+router.post('/books/:id/issue', (req, res)=> {
+    var book_id = req.params.id;
+    var customer_id = req.body.user_id;
+
+    bookModel.issueBook(book_id, customer_id, (result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.redirect('/admin/books');
+        }
+    });
+});
+
+router.get('/books/issued', (req, res)=> {
+    bookModel.getAll((result)=> {
+        if(!result){
+            res.send("Invalid!");
+        }
+        else {
+            console.log(result);
+            res.render('admin/issued-books', {res: result});
+        }
+    })
+});
+
 
 
 module.exports = router;

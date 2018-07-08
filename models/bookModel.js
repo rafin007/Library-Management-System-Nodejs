@@ -42,11 +42,19 @@ var deleteBook = (id, callback) => {
     });
 };
 
+var issueBook = (book_id, customer_id, callback) => {
+    var sql = "UPDATE books SET user_id = ? WHERE book_id = ?";
+    db.executeQuery(sql, [customer_id, book_id], function(result) {
+        callback(result);
+    });
+};
+
 module.exports = {
     getAll,
     searchBy,
     createBook,
     getBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    issueBook
 };

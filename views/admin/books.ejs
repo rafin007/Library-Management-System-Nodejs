@@ -75,9 +75,14 @@
                                                 <%=res[i].pages%>
                                             </td>
                                             <td>
-                                                <a href="#">Issue Book</a> |
-                                                <a href="/admin/books/edit/<%=res[i].book_id%>">Edit Book</a> |
-                                                <a href="/admin/books/delete/<%=res[i].book_id%>">Delete Book</a>
+                                                <% if(res[i].user_id) { %>
+                                                    <a href="/admin/books/edit/<%=res[i].book_id%>">Edit Book</a> |
+                                                    <a href="/admin/books/delete/<%=res[i].book_id%>">Delete Book</a>
+                                                <% } else { %>
+                                                    <a href="/admin/books/<%=res[i].book_id%>/issue">Issue Book</a> |
+                                                    <a href="/admin/books/edit/<%=res[i].book_id%>">Edit Book</a> |
+                                                    <a href="/admin/books/delete/<%=res[i].book_id%>">Delete Book</a>
+                                                <% } %>
                                             </td>
                                         </tr>
                                         <% } %>
