@@ -14,6 +14,7 @@ var admin = require('./controllers/admin');
 
 
 //customer controllers
+var customer = require('./controllers/customer'); // For testing  - Abrar
 
 //configure
 app.set('view engine', 'ejs');
@@ -52,43 +53,45 @@ app.use('/admin', admin);
 
 //customer routes
 
+app.use('/customer', customer);
 
-//admin routes
-app.get('/admin/books/issued', (req, res)=> {
-    res.render('admin/issued-books.ejs');
-});
+//admin routes2
+
+// app.get('/admin/books/issued', (req, res)=> {
+//     res.render('admin/issued-books.ejs');
+// });
 
 
 
 //customer routes
 
-app.get('/customer/home', (req, res)=> {
-    res.render('customer/home.ejs');
-});
+// app.get('/customer/home', (req, res)=> {
+//     res.render('customer/home.ejs');
+// });
 
-app.get('/customer/books', (req, res)=> {
-    res.render('customer/books.ejs');
-});
+// app.get('/customer/books', (req, res)=> {
+//     res.render('customer/books.ejs');
+// });
 
-app.get('/customer/profile', (req, res)=> {
-    res.render('customer/profile.ejs');
-});
+// app.get('/customer/profile', (req, res)=> {
+//     res.render('customer/profile.ejs');
+// });
 
-app.get('/customer/profile/edit', (req, res)=> {
-    res.render('customer/profile-edit.ejs');
-});
+// app.get('/customer/profile/edit', (req, res)=> {
+//     res.render('customer/profile-edit.ejs');
+// });
 
-app.get('/customer/changepass', (req, res)=> {
-    res.render('customer/change-password.ejs');
-});
+// app.get('/customer/changepass', (req, res)=> {
+//     res.render('customer/change-password.ejs');
+// });
 
-app.get('/customer/books/borrowed', (req, res)=> {
-    res.render('customer/borrowed-books.ejs');
-});
+// app.get('/customer/books/borrowed', (req, res)=> {
+//     res.render('customer/borrowed-books.ejs');
+// });
 
-app.get('/customer/books/request', (req, res)=> {
-    res.render('customer/books-request.ejs');
-});
+// app.get('/customer/books/request', (req, res)=> {
+//     res.render('customer/books-request.ejs');
+// });
 
 //server start
 app.listen(port, ()=>{
