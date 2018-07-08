@@ -39,12 +39,13 @@
                                         <th scope="col">ISBN</th>
                                         <th scope="col">Pages</th>
                                         <th scope="col">Issued To</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% for(var i=0; i< res.length; i++){ %>
                                         <tr>
-                                            <% if(res[i].user_id == null) {
+                                            <% if(res[i].user_id == null || res[i].user_id == 0) {
                                                   continue;
                                                }
                                             %>
@@ -76,6 +77,15 @@
                                                     <a href="/admin/customers/profile/<%=res[i].user_id%>">
                                                         <%=res[i].user_id%>
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <form method="post">
+                                                        <input type="text" name="book_id" value="<%=res[i].book_id%>" hidden>
+                                                        <div>
+                                                            <button type="submit" class="btn btn-danger">Unissue Customer</button>
+                                                            <br>
+                                                        </div>
+                                                    </form>
                                                 </td>
                                         </tr>
                                         <% } %>

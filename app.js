@@ -54,9 +54,6 @@ app.use('/admin', admin);
 
 
 //admin routes
-app.get('/admin/books/issued', (req, res)=> {
-    res.render('admin/issued-books.ejs');
-});
 
 
 

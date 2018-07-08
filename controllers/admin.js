@@ -432,7 +432,20 @@ router.get('/books/issued', (req, res)=> {
             console.log(result);
             res.render('admin/issued-books', {res: result});
         }
-    })
+    });
+});
+
+router.post('/books/issued', (req, res)=> {
+    var book_id = req.body.book_id;
+    bookModel.unissueBook(book_id, (result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.redirect('/admin/books');
+        }
+    });
 });
 
 

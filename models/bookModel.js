@@ -49,6 +49,20 @@ var issueBook = (book_id, customer_id, callback) => {
     });
 };
 
+var unissueBook = (book_id, callback) => {
+    var sql = "UPDATE books SET user_id = '' WHERE book_id = ?";
+    db.executeQuery(sql, [book_id], function(result) {
+        callback(result);
+    });
+};
+
+var getIssuedBooks = (id, callback) => {
+    var sql = "SELECT * FROM books WHERE NOT user_id = ''";
+    db.executeQuery(sql, null, function(result) {
+        callback(result);
+    });
+};
+
 module.exports = {
     getAll,
     searchBy,
@@ -56,5 +70,7 @@ module.exports = {
     getBook,
     updateBook,
     deleteBook,
-    issueBook
+    issueBook,
+    unissueBook,
+    getIssuedBooks
 };
