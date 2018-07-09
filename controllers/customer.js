@@ -140,19 +140,19 @@ router.post('/books', (req, res)=> {
 
 
 router.get('/books/borrowed', (req, res)=> {
-    bookModel.getAll((result)=> {
+    userModel.getUserBorrow(req.session.customer,(result)=> {
         if(!result){
-            res.send("No Borrowed Books");
+            res.send("Invalid");
         }
         else {
             console.log(result);
-            res.render('customer/borrowed-books', {res: result, errs: []});
+            res.render('customer/borrowed-booksVer2', {res: result, errs: []});
         }
     });
 });
 
 router.get('/books/request', (req, res)=> {
-    bookModel.getAll((result)=> {
+    userModel.getUserBorrow((result)=> {
         if(!result){
             res.send("Error");
         }

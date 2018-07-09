@@ -62,6 +62,12 @@ var deleteUser = (id, callback) => {
         callback(result);
     });
 };
+var getUserBorrow = (id, callback) => {
+    var sql = "SELECT * FROM books WHERE user_id=?";
+    db.executeQuery(sql, [id], function(result) {
+        callback(result);
+    });
+};
 
 
 module.exports = {
@@ -73,5 +79,6 @@ module.exports = {
     getAll,
     searchBy,
     updateCustomer,
-    deleteUser
+    deleteUser,
+    getUserBorrow
 };
