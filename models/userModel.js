@@ -62,8 +62,9 @@ var deleteUser = (id, callback) => {
         callback(result);
     });
 };
+
 var getUserBorrow = (id, callback) => {
-    var sql = "SELECT * FROM books WHERE user_id=?";
+    var sql = "SELECT * FROM books WHERE user_id = ?";
     db.executeQuery(sql, [id], function(result) {
         callback(result);
     });

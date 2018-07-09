@@ -412,6 +412,15 @@ router.post('/books/:id/issue', (req, res)=> {
     var book_id = req.params.id;
     var customer_id = req.body.user_id;
 
+    bookModel.setIssueDate(book_id, customer_id, (result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+        }
+    });
+
     bookModel.issueBook(book_id, customer_id, (result)=> {
         if(!result){
             res.send("Invalid");
@@ -444,6 +453,32 @@ router.post('/books/issued', (req, res)=> {
         else {
             console.log(result);
             res.redirect('/admin/books');
+        }
+    });
+});
+
+router.get('/books/requested', (req, res)=> {
+    bookModel.getRequestedBooks((result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('admin/books-requested', {res: result, errs: []});
+        }
+    });
+});
+
+router.post('/books/requested', (req, res)=> {
+    var searchBy = req.body.searchBy;
+    var word = req.body.word;
+    bookModel.bookRequestSearch(searchBy, word, (result)=> {
+        if(!result){
+            res.render('admin/books-requested', {res: [], errs: [{message: "No results found!"}]});
+        }
+        else {
+            console.log(result);
+            res.render('admin/books-requested', {res: result, errs: []})
         }
     });
 });

@@ -37,8 +37,8 @@
                                         <th scope="col">Publisher</th>
                                         <th scope="col">Edition</th>
                                         <th scope="col">ISBN</th>
-                                        <th scope="col">Pages</th>
                                         <th scope="col">Issued To</th>
+                                        <th scope="col">Issued Date</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -71,12 +71,12 @@
                                                     <%=res[i].isbn%>
                                                 </td>
                                                 <td>
-                                                    <%=res[i].pages%>
-                                                </td>
-                                                <td>
                                                     <a href="/admin/customers/profile/<%=res[i].user_id%>">
                                                         <%=res[i].user_id%>
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <%=res[i].date_issued%>
                                                 </td>
                                                 <td>
                                                     <form method="post">

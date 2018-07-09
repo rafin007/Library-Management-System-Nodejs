@@ -43,14 +43,15 @@ var deleteBook = (id, callback) => {
 };
 
 var issueBook = (book_id, customer_id, callback) => {
-    var sql = "UPDATE books SET user_id = ? WHERE book_id = ?";
-    db.executeQuery(sql, [customer_id, book_id], function(result) {
+    var date = new Date();
+    var sql = "UPDATE books SET user_id = ?, date_issued = ? WHERE book_id = ?";
+    db.executeQuery(sql, [customer_id, date, book_id], function(result) {
         callback(result);
     });
 };
 
 var unissueBook = (book_id, callback) => {
-    var sql = "UPDATE books SET user_id = '' WHERE book_id = ?";
+    var sql = "UPDATE books SET user_id = '', date_issued = '' WHERE book_id = ?";
     db.executeQuery(sql, [book_id], function(result) {
         callback(result);
     });
@@ -63,6 +64,51 @@ var getIssuedBooks = (id, callback) => {
     });
 };
 
+var getUnborrowedBooks = (callback) => {
+    var sql = "SELECT * FROM books WHERE (user_id = '') OR (user_id = 0)";
+    db.executeQuery(sql, null, function(result) {
+        callback(result);
+    });
+};
+
+var bookRequest = (customer_id, book, callback) => {
+    var date = new Date();
+    var sql = "INSERT INTO books_request VALUES(null, ?, ?, ?, ?, ?, ?, ?)";
+    db.executeQuery(sql, [customer_id, book.genre, book.title, book.author, book.edition, book.isbn, date], function(result) {
+        callback(result);
+    });
+};
+
+var customerSearch = (searchBy, word, callback) => {
+    var sql = "(SELECT * FROM books WHERE "+searchBy+" = ?) AND ((user_id = '') OR (user_id = 0))";
+    db.executeQuery(sql, [word], function(result) {
+        callback(result);
+    });
+};
+
+var getRequestedBooks = (callback) => {
+    var sql = "SELECT * FROM books_request";
+    db.executeQuery(sql, null, function(result) {
+        callback(result);
+    });
+};
+
+var bookRequestSearch = (searchBy, word, callback) => {
+    var sql = "SELECT * FROM books_request WHERE "+searchBy+" = ?";
+    db.executeQuery(sql, [word], function(result) {
+        callback(result);
+    });
+};
+
+var setIssueDate = (book_id, customer_id, callback) => {
+    var date = new Date();
+    var sql = "INSERT INTO issue_date VALUES(null, ?, ?, ?)";
+    db.executeQuery(sql, [book_id, customer_id, date], function(result) {
+        callback(result);
+    });
+};
+
+
 
 module.exports = {
     getAll,
@@ -73,5 +119,11 @@ module.exports = {
     deleteBook,
     issueBook,
     unissueBook,
-    getIssuedBooks
+    getIssuedBooks,
+    getUnborrowedBooks,
+    bookRequest,
+    customerSearch,
+    getRequestedBooks,
+    bookRequestSearch,
+    setIssueDate
 };

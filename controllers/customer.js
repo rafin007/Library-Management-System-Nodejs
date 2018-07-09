@@ -8,6 +8,7 @@ var asyncValidator = require('async-validator-2');
 router.get('/home', (req, res)=> {
     res.render('customer/home');
 });
+
 router.get('/profile', (req, res)=> {
     var customer = userModel.getUser(req.session.customer, (result)=> {
         if(!result){
@@ -113,7 +114,7 @@ router.post('/changepass', (req, res)=> {
 });
 
 router.get('/books', (req, res)=> {
-    bookModel.getAll((result)=> {
+    bookModel.getUnborrowedBooks((result)=> {
         if(!result){
             res.send("Invalid");
         }
@@ -127,7 +128,7 @@ router.get('/books', (req, res)=> {
 router.post('/books', (req, res)=> {
     var searchBy = req.body.searchBy;
     var word = req.body.word;
-    bookModel.searchBy(searchBy, word, (result)=> {
+    bookModel.customerSearch(searchBy, word, (result)=> {
         if(!result){
             res.render('customer/books', {res: [], errs: [{message: "No results found!"}]});
         }
@@ -140,32 +141,50 @@ router.post('/books', (req, res)=> {
 
 
 router.get('/books/borrowed', (req, res)=> {
-    userModel.getUserBorrow(req.session.customer,(result)=> {
+    userModel.getUserBorrow(req.session.customer, (result)=> {
         if(!result){
             res.send("Invalid");
         }
         else {
             console.log(result);
-            res.render('customer/borrowed-booksVer2', {res: result, errs: []});
+            res.render('customer/borrowed-books', {res: result});
         }
     });
 });
 
 router.get('/books/request', (req, res)=> {
-    userModel.getUserBorrow((result)=> {
-        if(!result){
-            res.send("Error");
+    res.render('customer/books-request', {errs: [], success: []});
+});
+
+router.post('/books/request', (req, res)=> {
+    var data = {
+        genre: req.body.genre,
+        title: req.body.title,
+        author: req.body.author,
+        edition: req.body.edition,
+        isbn: req.body.isbn
+    };
+
+    var rules = validationRules.books.request;
+    var validator = new asyncValidator(rules);
+
+    validator.validate(data, (errors, fields)=> {
+        if(!errors){
+            bookModel.bookRequest(req.session.customer, data, (result)=> {
+                if(result.length == 0){
+                    res.send("Invalid");
+                }
+                else {
+                    res.render('customer/books-request', {errs: [], success: [{message: "Your request has been noted, thank you!"}]});
+                }
+            });
         }
         else {
-            console.log(result);
-            res.render('customer/books-request', {res: result, errs: []});
+            console.log(fields);
+            res.render('customer/books-request', {errs: errors, success: []});
         }
     });
 });
-//request post goes here 
-
-
-//
 
 
 

@@ -113,6 +113,28 @@ module.exports = {
                 required: true,
                 message: 'Invalid Pages'
             }
+        },
+        request: {
+            genre: {
+                required: true,
+                message: 'Genre cannot be empty'
+            },
+            title: {
+                required: true,
+                message: 'Title cannot be empty'
+            },
+            author: {
+                required: true,
+                message: 'Author cannot be empty'
+            },
+            edition: {
+                required: true,
+                message: 'Invalid Edition'
+            },
+            isbn: {
+                required: true,
+                message: 'ISBN cannot be empty'
+            }
         }
     }
 };
