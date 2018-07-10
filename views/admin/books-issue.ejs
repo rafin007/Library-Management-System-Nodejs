@@ -39,7 +39,6 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Gender</th>
-                                        <th scope="col">Books borrowed</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -47,7 +46,7 @@
                                     <% for(var i=0; i< res.length; i++){ %>
                                     <tr>
                                         <% if(res[i].is_admin == 1){
-                                                res.splice(i, 1);
+                                                continue;
                                            }
                                         %>
                                         <th scope="row"><%=res[i].user_id%></th>
@@ -56,7 +55,6 @@
                                         <td><%=res[i].email%></td>
                                         <td><%=res[i].address%></td>
                                         <td><%=res[i].gender%></td>
-                                        <td>10</td>
                                         <td>
                                             <form method="post">
                                                 <input type="text" name="user_id" value="<%=res[i].user_id%>" hidden>
@@ -70,6 +68,12 @@
                                     <% } %>
                                 </tbody>
                             </table>
+                            <div class="">
+                                <% for(var i=0; i< errs.length; i++){ %>
+                                    <%= errs[i].message; %>
+                                    <br>
+                                <% } %>
+                            </div>
                         </div>
                 </div>
             </div>

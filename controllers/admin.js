@@ -412,22 +412,42 @@ router.post('/books/:id/issue', (req, res)=> {
     var book_id = req.params.id;
     var customer_id = req.body.user_id;
 
-    bookModel.setIssueDate(book_id, customer_id, (result)=> {
-        if(!result){
+    bookModel.booksIssuedByCustomer(customer_id, (books)=> {
+        if(!books){
             res.send("Invalid");
         }
         else {
-            console.log(result);
-        }
-    });
-
-    bookModel.issueBook(book_id, customer_id, (result)=> {
-        if(!result){
-            res.send("Invalid");
-        }
-        else {
-            console.log(result);
-            res.redirect('/admin/books');
+            console.log(books.length);
+            if(books.length <= 2){
+                bookModel.setIssueDate(book_id, customer_id, (result)=> {
+                    if(!result){
+                        res.send("Invalid");
+                    }
+                    else {
+                        console.log(result);
+                    }
+                });
+                bookModel.issueBook(book_id, customer_id, (result)=> {
+                    if(!result){
+                        res.send("Invalid");
+                    }
+                    else {
+                        console.log(result);
+                        res.redirect('/admin/books');
+                    }
+                });
+            }
+            else{
+                userModel.getAll((result)=> {
+                    if(!result){
+                        res.send("Invalid");
+                    }
+                    else {
+                        console.log(result);
+                        res.render('admin/books-issue', {res: result, errs: [{message: "This customer has already issued 3 books, please unissue one first!"}], success: []});
+                    }
+                });
+            }
         }
     });
 });

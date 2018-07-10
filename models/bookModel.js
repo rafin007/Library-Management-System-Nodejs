@@ -108,6 +108,12 @@ var setIssueDate = (book_id, customer_id, callback) => {
     });
 };
 
+var booksIssuedByCustomer = (customer_id, callback) => {
+    var sql = "SELECT * FROM books WHERE user_id = ?";
+    db.executeQuery(sql, [customer_id], function(result) {
+        callback(result);
+    });
+};
 
 
 module.exports = {
@@ -125,5 +131,6 @@ module.exports = {
     customerSearch,
     getRequestedBooks,
     bookRequestSearch,
-    setIssueDate
+    setIssueDate,
+    booksIssuedByCustomer
 };

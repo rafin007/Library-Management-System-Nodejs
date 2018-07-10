@@ -34,11 +34,11 @@
                                         <th scope="col">Genre</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Author</th>
-                                        <th scope="col">Publisher</th>
                                         <th scope="col">Edition</th>
                                         <th scope="col">ISBN</th>
                                         <th scope="col">Issued To</th>
                                         <th scope="col">Issued Date</th>
+                                        <th scope="col">Days left until invalid</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -62,9 +62,6 @@
                                                     <%=res[i].author%>
                                                 </td>
                                                 <td>
-                                                    <%=res[i].publisher%>
-                                                </td>
-                                                <td>
                                                     <%=res[i].edition%>
                                                 </td>
                                                 <td>
@@ -77,6 +74,16 @@
                                                 </td>
                                                 <td>
                                                     <%=res[i].date_issued%>
+                                                </td>
+                                                <td>
+                                                    <%
+                                                        var date1 = new Date(res[i].date_issued);
+                                                        var date2 = new Date();
+                                                        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+                                                        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                                        var leftValid = 30 - diffDays;
+                                                    %>
+                                                    <%=leftValid+" Days"%>
                                                 </td>
                                                 <td>
                                                     <form method="post">
