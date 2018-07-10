@@ -6,7 +6,25 @@ var validationRules = require.main.require('./validation_rules/rules');
 var asyncValidator = require('async-validator-2');
 
 router.get('/home', (req, res)=> {
-    res.render('admin/home');
+    // var users = "";
+    userModel.getAll((users)=> {
+        if(!users){
+            res.send("Invalid");
+        }
+        else {
+            bookModel.getAll((books)=> {
+                if(!books){
+                    res.send("Invalid");
+                }
+                else {
+                    res.render('admin/home', {usr: users.length, bk: books.length});
+                }
+            });
+            // res.render('admin/home', {number: result.length});
+        }
+    });
+
+
 });
 
 router.get('/profile', (req, res)=> {
