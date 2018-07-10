@@ -211,7 +211,7 @@ router.post('/customers', (req, res)=> {
 });
 
 router.get('/customers/add', (req, res)=> {
-    res.render('admin/customers-add', {errs: [], success: []});
+    res.render('admin/customers-add', {errs: [], success: [], data: []});
 });
 
 router.post('/customers/add', (req, res)=> {
@@ -235,19 +235,19 @@ router.post('/customers/add', (req, res)=> {
                 }
                 else {
                     console.log(result);
-                    res.render('admin/customers-add', {errs: [], success: [{message: "Customer added successfully!"}]});
+                    res.render('admin/customers-add', {errs: [], success: [{message: "Customer added successfully!"}], data: []});
                 }
             });
         }
         else {
             console.log(fields);
-            res.render('admin/customers-add', {errs: errors, success: []});
+            res.render('admin/customers-add', {errs: errors, success: [], data});
         }
     });
 });
 
 router.get('/books/add', (req, res)=> {
-    res.render('admin/books-add', {errs: [], success: []});
+    res.render('admin/books-add', {errs: [], success: [], data: []});
 });
 
 router.post('/books/add', (req, res)=> {
@@ -272,13 +272,13 @@ router.post('/books/add', (req, res)=> {
                 }
                 else {
                     console.log(result);
-                    res.render('admin/books-add', {errs: [], success: [{message: "Book added successfully!"}]});
+                    res.render('admin/books-add', {errs: [], success: [{message: "Book added successfully!"}], data: []});
                 }
             });
         }
         else {
             console.log(fields);
-            res.render('admin/books-add', {errs: errors, success: []});
+            res.render('admin/books-add', {errs: errors, success: [], data});
         }
     });
 });

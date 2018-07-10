@@ -16,8 +16,8 @@ var searchBy = (searchBy, word, callback) => {
 
 var createBook = (book, callback) => {
     var date = new Date();
-    var sql = "INSERT INTO books VALUES(null, null, ?, ?, ?, ?, ?, ?, ?, ?)";
-    db.executeQuery(sql, [book.genre, book.title, book.author, book.publisher, book.edition, book.isbn, book.pages, date], function(result) {
+    var sql = "INSERT INTO books VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    db.executeQuery(sql, [0, book.genre, book.title, book.author, book.publisher, book.edition, book.isbn, book.pages, date], function(result) {
         callback(result);
     });
 };
@@ -66,7 +66,7 @@ var getIssuedBooks = (id, callback) => {
 };
 
 var getUnborrowedBooks = (callback) => {
-    var sql = "SELECT * FROM books WHERE (user_id = '') OR (user_id = 0)";
+    var sql = "SELECT * FROM books WHERE (user_id = 'NULL') OR (user_id = 0)";
     db.executeQuery(sql, null, function(result) {
         callback(result);
     });

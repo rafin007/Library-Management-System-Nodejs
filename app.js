@@ -8,13 +8,14 @@ var port = 3000;
 //common controllers
 var signup = require('./controllers/signup');
 var login = require('./controllers/login');
+var logout = require('./controllers/logout');
 
 //admin controllers
 var admin = require('./controllers/admin');
 
 
 //customer controllers
-var customer = require('./controllers/customer'); // For testing  - Abrar
+var customer = require('./controllers/customer');
 
 //configure
 app.set('view engine', 'ejs');
@@ -46,6 +47,7 @@ app.use('*', function(req, res, next){
 //routes
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/logout', logout);
 
 //admin routes
 app.use('/admin', admin);
@@ -54,39 +56,6 @@ app.use('/admin', admin);
 //customer routes
 
 app.use('/customer', customer);
-
-
-
-
-//customer routes
-
-// app.get('/customer/home', (req, res)=> {
-//     res.render('customer/home.ejs');
-// });
-
-// app.get('/customer/books', (req, res)=> {
-//     res.render('customer/books.ejs');
-// });
-
-// app.get('/customer/profile', (req, res)=> {
-//     res.render('customer/profile.ejs');
-// });
-
-// app.get('/customer/profile/edit', (req, res)=> {
-//     res.render('customer/profile-edit.ejs');
-// });
-
-// app.get('/customer/changepass', (req, res)=> {
-//     res.render('customer/change-password.ejs');
-// });
-
-// app.get('/customer/books/borrowed', (req, res)=> {
-//     res.render('customer/borrowed-books.ejs');
-// });
-
-// app.get('/customer/books/request', (req, res)=> {
-//     res.render('customer/books-request.ejs');
-// });
 
 //server start
 app.listen(port, ()=>{

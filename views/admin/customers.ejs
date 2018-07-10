@@ -39,7 +39,6 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Gender</th>
-                                        <th scope="col">Books borrowed</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -56,7 +55,6 @@
                                         <td><%=res[i].email%></td>
                                         <td><%=res[i].address%></td>
                                         <td><%=res[i].gender%></td>
-                                        <td>10</td>
                                         <td>
                                             <a href="/admin/customers/edit/<%=res[i].user_id%>">Edit Customer</a> |
                                             <a href="/admin/customers/delete/<%=res[i].user_id%>">Delete Customer</a>
