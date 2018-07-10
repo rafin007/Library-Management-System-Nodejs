@@ -18,16 +18,16 @@
                         Total Members: <span style="float: right;"><%=usr%></span>
                     </div>
                     <div class="alert alert-primary" role="alert">
-                        Total books borrowed: <span style="float: right;">10</span>
+                        Total books borrowed: <span style="float: right;"><%=brwd%></span>
                     </div>
                     <div class="alert alert-primary" role="alert">
-                        Total books borrowed this month: <span style="float: right;">10</span>
+                        Total borrowed books in last 30 days: <span style="float: right;"><%=mb%></span>
                     </div>
                     <div class="alert alert-primary" role="alert">
-                        Most borrowed books in last 30 days: <span style="float: right;">10</span>
+                        Most borrowed book in last 30 days: <span style="float: right;"><%=mbb.title%> by <%=mbb.author%> | Total: <%=mbb.magnitude%> times</span>
                     </div>
                     <div class="alert alert-primary" role="alert">
-                        Most requested book: <span style="float: right;">10</span>
+                        Most requested book: <span style="float: right;"><%=mrb.title%> by <%=mrb.author%> | Total: <%=mrb.magnitude%> times</span>
                     </div>
                 </div>
             </div>

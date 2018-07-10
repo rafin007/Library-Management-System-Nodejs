@@ -17,10 +17,37 @@ router.get('/home', (req, res)=> {
                     res.send("Invalid");
                 }
                 else {
-                    res.render('admin/home', {usr: users.length, bk: books.length});
+                    bookModel.getAllBorrowedBooks((borrowed)=> {
+                        if(!borrowed){
+                            res.send("invalid");
+                        }
+                        else {
+                            bookModel.totalBorrowed30((mostBorrowed)=> {
+                                if(!mostBorrowed){
+                                    res.send("not valid");
+                                }
+                                else {
+                                    bookModel.mostRequestedBook((mostRequested)=> {
+                                        if(!mostRequested){
+                                            res.render("nothing here");
+                                        }
+                                        else {
+                                            bookModel.mostBorrowedBook((mostBorrowedBook)=> {
+                                                if(!mostBorrowedBook){
+                                                    res.send("no borrowed books");
+                                                }
+                                                else {
+                                                    res.render('admin/home', {usr: users.length, bk: books.length, brwd: borrowed.length, mb: mostBorrowed.length, mrb: mostRequested, mbb: mostBorrowedBook});
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
             });
-            // res.render('admin/home', {number: result.length});
         }
     });
 

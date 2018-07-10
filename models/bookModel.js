@@ -15,8 +15,9 @@ var searchBy = (searchBy, word, callback) => {
 };
 
 var createBook = (book, callback) => {
-    var sql = "INSERT INTO books VALUES(null, null, ?, ?, ?, ?, ?, ?, ?)";
-    db.executeQuery(sql, [book.genre, book.title, book.author, book.publisher, book.edition, book.isbn, book.pages], function(result) {
+    var date = new Date();
+    var sql = "INSERT INTO books VALUES(null, null, ?, ?, ?, ?, ?, ?, ?, ?)";
+    db.executeQuery(sql, [book.genre, book.title, book.author, book.publisher, book.edition, book.isbn, book.pages, date], function(result) {
         callback(result);
     });
 };
@@ -115,6 +116,38 @@ var booksIssuedByCustomer = (customer_id, callback) => {
     });
 };
 
+var getAllBorrowedBooks = (callback) => {
+    var sql = "SELECT * FROM issue_date";
+    db.executeQuery(sql, null, function(result) {
+        callback(result);
+    });
+};
+
+var totalBorrowed30 = (callback) => {
+    var result = new Date();
+    var newDate = result.setDate(result.getDate() + 30);
+    var sql = "SELECT books.*, issue_date.book_id FROM issue_date INNER JOIN books ON issue_date.book_id=books.book_id WHERE (date BETWEEN ? AND ?)";
+    db.executeQuery(sql, [newDate, result], function(result) {
+        callback(result);
+    });
+};
+
+var mostBorrowedBook = (callback) => {
+    var sql = "SELECT books.*, issue_date.book_id, COUNT(*) AS magnitude FROM issue_date INNER JOIN books ON issue_date.book_id=books.book_id GROUP BY books.isbn ORDER BY magnitude DESC LIMIT 1";
+    db.executeQuery(sql, null, function(result) {
+        callback(result[0]);
+    });
+};
+
+var mostRequestedBook = (callback) => {
+    var sql = "SELECT *, COUNT(*) AS magnitude FROM books_request GROUP BY isbn ORDER BY magnitude DESC LIMIT 1";
+    db.executeQuery(sql, null, function(result) {
+        callback(result[0]);
+    });
+};
+
+// SELECT books.*, issue_date.book_id, COUNT(*) AS magnitude FROM issue_date INNER JOIN books ON issue_date.book_id=books.book_id WHERE (date BETWEEN '2018-07-10' AND '2018-08-10') GROUP BY books.isbn ORDER BY magnitude DESC LIMIT 1
+
 
 module.exports = {
     getAll,
@@ -132,5 +165,9 @@ module.exports = {
     getRequestedBooks,
     bookRequestSearch,
     setIssueDate,
-    booksIssuedByCustomer
+    booksIssuedByCustomer,
+    getAllBorrowedBooks,
+    totalBorrowed30,
+    mostRequestedBook,
+    mostBorrowedBook
 };
