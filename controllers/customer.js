@@ -6,7 +6,14 @@ var validationRules = require.main.require('./validation_rules/rules');
 var asyncValidator = require('async-validator-2');
 
 router.get('/home', (req, res)=> {
-    res.render('customer/home');
+    userModel.totalBooksBorrowedByCustomer(req.session.customer, (booksBorrowed)=> {
+        if(!booksBorrowed){
+            res.send("nothing here");
+        }
+        else {
+            res.render('customer/home', {tbbbc: booksBorrowed.length});
+        }
+    });
 });
 
 router.get('/profile', (req, res)=> {
@@ -192,7 +199,7 @@ router.get('/books/history', (req, res)=> {
         }
         else {
             console.log(result);
-            res.render('customer/Chistory', {res: result});
+            res.render('customer/borrow-history', {res: result});
         }
     });
 });

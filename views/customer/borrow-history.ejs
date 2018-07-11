@@ -10,40 +10,19 @@
                 <div class="row">
                     <%-include('partials/sidebar.html')%>
                         <div class="col-md-10 content">
-                            <form method="post">
-                                <div class="input-group mb-5 search-bar">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Search Books</label>
-                                    </div>
-                                    <select class="custom-select dropbar" id="inputGroupSelect01" name="searchBy">
-                                            <option selected>By...</option>
-                                            <option value="genre">Genre</option>
-                                            <option value="title">Title</option>
-                                            <option value="author">Author</option>
-                                            <option value="publisher">Publisher</option>
-                                            <option value="edition">Edition</option>
-                                            <option value="isbn">ISBN</option>
-                                            <option value="pages">Pages</option>
-                                        </select>
-                                    <div class="form-inline">
-
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="word">
-                                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                                    </div>
-                                </div>
-                            </form>
+                         <p class="display-3">Your History</p>
 
                             <table class="table table-striped table-light table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Genre</th>
+                                        <th scope="col">User ID</th>
+                                        <th scope="col">Book ID</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Author</th>
                                         <th scope="col">Publisher</th>
                                         <th scope="col">Edition</th>
                                         <th scope="col">ISBN</th>
-                                        <th scope="col">Pages</th>
+                                        <th scope="col">Date Issued</th>
                                         <!-- <th scope="col">Action</th> -->
                                     </tr>
                                 </thead>
@@ -51,10 +30,10 @@
                                     <% for(var i=0; i< res.length; i++){ %>
                                         <tr>
                                             <th scope="row">
-                                                <%=res[i].book_id%>
+                                                <%=res[i].user_id%>
                                             </th>
                                             <td>
-                                                <%=res[i].genre%>
+                                                <%=res[i].book_id%>
                                             </td>
                                             <td>
                                                 <%=res[i].title%>
@@ -72,8 +51,9 @@
                                                 <%=res[i].isbn%>
                                             </td>
                                             <td>
-                                                <%=res[i].pages%>
+                                                <%=res[i].date%>
                                             </td>
+
                                         </tr>
                                         <% } %>
 
