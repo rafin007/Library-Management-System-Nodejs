@@ -185,6 +185,17 @@ router.post('/books/request', (req, res)=> {
         }
     });
 });
+router.get('/books/history', (req, res)=> {
+    userModel.getUserHistory(req.session.customer, (result)=> {
+        if(!result){
+            res.send("Invalid");
+        }
+        else {
+            console.log(result);
+            res.render('customer/Chistory', {res: result});
+        }
+    });
+});
 
 
 
